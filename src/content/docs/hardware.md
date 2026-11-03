@@ -44,6 +44,26 @@ CUDA 13.0 removed offline compilation for everything below compute capability 7.
 
 Kepler went earlier. CUDA 11.0 dropped compute capability 3.0 and 3.2. CUDA 12.0 dropped 3.5 and 3.7. Driver 470 is the last Kepler branch, and its support period has ended. That is why Kindi ships a CUDA 10.2 image: it keeps Kepler cards usable after the modern stack moved on.
 
+## Bandwidth is the decode bottleneck
+
+Decode speed tracks memory bandwidth more closely than architecture generation. The K6000 and K80 have more bandwidth than the P1000 and P2000. The P4000 is the fastest Pascal card on the shelf. The K620 and P600 are the slowest. These are approximate vendor figures. Record the actual memory clock and bus width with `nvidia-smi -q` when the card is tested.
+
+| Card | Bandwidth |
+|---|---|
+| Quadro K6000 | ~288 GB/s |
+| Quadro P4000 | ~243 GB/s |
+| Tesla K80 | ~240 GB/s per GPU |
+| GeForce GTX 770 | ~224 GB/s |
+| Quadro K5200 | ~192 GB/s |
+| Tesla K10 | ~160 GB/s per GPU |
+| Quadro P2000 | ~140 GB/s |
+| Quadro P1000 | ~82 GB/s |
+| Quadro K1200 | ~80 GB/s |
+| Quadro P600 | ~40 GB/s |
+| Quadro K620 | ~29 GB/s |
+
+For prefill, compute and newer instructions matter more. For decode, bandwidth and capacity dominate. The benchmark reports both, because a card that wins one phase does not always win the other.
+
 ## Runtime cliffs
 
 The modern AI stack assumes newer compute capabilities. The useful work is finding the exact point where each runtime stops.
