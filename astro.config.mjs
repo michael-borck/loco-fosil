@@ -28,6 +28,7 @@ export default defineConfig({
             { label: 'Hardware', slug: 'hardware' },
             { label: 'Benchmarks', slug: 'benchmarks' },
             { label: 'Low-power node', slug: 'node' },
+            { label: 'Build tiers', slug: 'builds' },
             { label: 'Lightweight harness', slug: 'harness' },
             { label: 'Findings', slug: 'findings' },
             { label: 'FAQ', slug: 'faq' },
