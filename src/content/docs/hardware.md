@@ -116,6 +116,8 @@ The lab already has two comparison cards in the main fleet, not on the relic she
 
 The 3060 is on Hidra. The 3090 is on Puente. The current assignment is in the [LocoBanco GPU inventory](https://locobanco.org/gpu-inventory/).
 
+Price note: the 3090 is often overpriced on the secondhand market because 24 GB and high bandwidth are in demand. The P40 24 GB is the cheaper 24 GB alternative if you can cool a passive server card. The 3060 12 GB remains the value pick. The 3090 on Puente is the comparison ceiling, not a purchase recommendation.
+
 The benchmark measures tokens per joule at the wall. F5 covers the Optiplex plus K1200 node. The other cards get the same measurement once they are on a host.
 
 ## Runtime cliffs
