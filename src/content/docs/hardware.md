@@ -103,6 +103,8 @@ The working hypothesis:
 
 Cooling is part of the power equation. The K10 and K80 are passive server cards and need high static pressure airflow, a shroud, or an open frame. A standard desktop case will not cool them adequately.
 
+The K10 and K80 are proof-of-concept hardware. They are interesting for dual-GPU topology and Kepler support, but a modern GTX or RTX card is the better default for a daily node. Standard cooling, current CUDA, and better tokens per joule matter more than a cheap 24 GB board. Candidates to price secondhand: GTX 1660 Super 6 GB, RTX 3050 8 GB, RTX 3060 12 GB, RTX 3090 24 GB.
+
 The benchmark measures tokens per joule at the wall. F5 covers the Optiplex plus K1200 node. The other cards get the same measurement once they are on a host.
 
 ## Runtime cliffs
