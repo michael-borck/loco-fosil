@@ -74,6 +74,37 @@ The K1200 pair uses two separate PCIe slots. Peer-to-peer support depends on the
 
 Measure the link before trusting it: `nvidia-smi topo -m`, `p2pBandwidthLatencyTest`, or `nvbandwidth`.
 
+## Power and the sweet spot
+
+The sweet spot is not the fastest card. It is the card that runs the model you need at the lowest energy per useful token.
+
+These are approximate board power figures. Measure at the wall, including the host, because the PSU and idle draw can dominate at this scale.
+
+| Card | Board power | VRAM | Bandwidth | Likely role |
+|---|---|---|---|---|
+| Quadro K620 | ~45 W | 2 GB | ~28.8 GB/s | Low-power 2B, limited by DDR3 |
+| Quadro K1200 | ~45 W | 4 GB | ~80 GB/s | 2B and 9B efficiency candidate |
+| Quadro P600 | ~40 W | 2 GB | ~40 GB/s | Low-power 2B |
+| Quadro P1000 | ~47 W | 4 GB | ~82 GB/s | 2B and 9B |
+| Quadro P2000 | ~75 W | 5 GB | ~140 GB/s | 9B with more headroom |
+| Quadro P4000 | ~105 W | 8 GB | ~243 GB/s | 27B efficiency candidate |
+| GeForce GTX 770 | ~230 W | 2 or 4 GB | ~224 GB/s | High power, small VRAM |
+| Tesla K10 | ~225 W | 2 x 4 GB | ~160 GB/s per GPU | Dual-GPU experiment |
+| Quadro K5200 | ~150 W | 8 GB | ~192 GB/s | 27B on a Kepler card |
+| Quadro K6000 | ~225 W | 12 GB | ~288 GB/s | 27B capacity and bandwidth |
+| Tesla K80 | ~300 W | 2 x 12 GB | ~240 GB/s per GPU | Dual-GPU experiment, cooling challenge |
+
+The working hypothesis:
+
+- 2B and 4B: K1200 or P1000. About 45 W, 4 GB, and around 80 GB/s. The K1200 is already tested with Kindi.
+- 9B: P2000 or K1200. The P2000 gives 5 GB and 140 GB/s at about 75 W.
+- 27B: P4000 looks like the efficiency candidate at about 105 W and 243 GB/s. The K6000 is the capacity and bandwidth option at about 225 W. Two K1200 cards are the low-power pair at about 90 W total, but tensor parallelism takes some of that advantage back.
+- K10 and K80: useful for dual-GPU experiments, not likely efficiency winners. The K80 is 300 W and passive, so cooling is a project in itself.
+
+Cooling is part of the power equation. The K10 and K80 are passive server cards and need high static pressure airflow, a shroud, or an open frame. A standard desktop case will not cool them adequately.
+
+The benchmark measures tokens per joule at the wall. F5 covers the Optiplex plus K1200 node. The other cards get the same measurement once they are on a host.
+
 ## Runtime cliffs
 
 The modern AI stack assumes newer compute capabilities. The useful work is finding the exact point where each runtime stops.
