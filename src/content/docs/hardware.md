@@ -44,23 +44,25 @@ CUDA 13.0 removed offline compilation for everything below compute capability 7.
 
 Kepler went earlier. CUDA 11.0 dropped compute capability 3.0 and 3.2. CUDA 12.0 dropped 3.5 and 3.7. Driver 470 is the last Kepler branch, and its support period has ended. That is why Kindi ships a CUDA 10.2 image: it keeps Kepler cards usable after the modern stack moved on.
 
-## Bandwidth is the decode bottleneck
+## VRAM speed and bandwidth
 
-Decode speed tracks memory bandwidth more closely than architecture generation. The K6000 and K80 have more bandwidth than the P1000 and P2000. The P4000 is the fastest Pascal card on the shelf. The K620 and P600 are the slowest. These are approximate vendor figures. Record the actual memory clock and bus width with `nvidia-smi -q` when the card is tested.
+Decode speed tracks memory bandwidth more closely than architecture generation. The K6000 and K80 have more bandwidth than the P1000 and P2000. The P4000 is the fastest Pascal card on the shelf. The K620 and P600 are the slowest.
 
-| Card | Bandwidth |
-|---|---|
-| Quadro K6000 | ~288 GB/s |
-| Quadro P4000 | ~243 GB/s |
-| Tesla K80 | ~240 GB/s per GPU |
-| GeForce GTX 770 | ~224 GB/s |
-| Quadro K5200 | ~192 GB/s |
-| Tesla K10 | ~160 GB/s per GPU |
-| Quadro P2000 | ~140 GB/s |
-| Quadro P1000 | ~82 GB/s |
-| Quadro K1200 | ~80 GB/s |
-| Quadro P600 | ~40 GB/s |
-| Quadro K620 | ~29 GB/s |
+These are approximate vendor figures. Memory clock is the base clock, not the effective data rate. DDR3 transfers twice per clock and GDDR5 transfers four times per clock. Confirm the actual memory clock and bus width with `nvidia-smi -q -d CLOCK,MEMORY` when the card is tested.
+
+| Card | Memory | Type | Bus width | Memory clock | Bandwidth |
+|---|---|---|---|---|---|
+| Quadro K6000 | 12 GB | GDDR5 | 384-bit | 1500 MHz | ~288 GB/s |
+| Quadro P4000 | 8 GB | GDDR5 | 256-bit | 1901 MHz | ~243 GB/s |
+| Tesla K80 | 2 x 12 GB | GDDR5 | 2 x 384-bit | 1250 MHz | ~240 GB/s per GPU |
+| GeForce GTX 770 | 2 or 4 GB | GDDR5 | 256-bit | 1753 MHz | ~224 GB/s |
+| Quadro K5200 | 8 GB | GDDR5 | 256-bit | 1500 MHz | ~192 GB/s |
+| Tesla K10 | 2 x 4 GB | GDDR5 | 2 x 256-bit | 1250 MHz | ~160 GB/s per GPU |
+| Quadro P2000 | 5 GB | GDDR5 | 160-bit | 1752 MHz | ~140 GB/s |
+| Quadro P1000 | 4 GB | GDDR5 | 128-bit | 1252 MHz | ~82 GB/s |
+| Quadro K1200 | 4 GB | GDDR5 | 128-bit | 1250 MHz | ~80 GB/s |
+| Quadro P600 | 2 GB | GDDR5 | 64-bit | 1252 MHz | ~40 GB/s |
+| Quadro K620 | 2 GB | DDR3 | 128-bit | 900 MHz | ~28.8 GB/s |
 
 For prefill, compute and newer instructions matter more. For decode, bandwidth and capacity dominate. The benchmark reports both, because a card that wins one phase does not always win the other.
 
