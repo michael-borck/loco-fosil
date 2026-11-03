@@ -1,0 +1,53 @@
+---
+title: LocoFósil
+description: "Second-life GPUs, measured. Useful local inference on hardware the modern stack left behind."
+template: splash
+hero:
+  tagline: |
+    Second-life GPUs, measured.
+
+    What is the minimum useful local inference node in 2026?
+  image:
+    file: ../../assets/fosil.svg
+  actions:
+    - text: Hardware matrix
+      link: /hardware/
+      icon: right-arrow
+      variant: primary
+    - text: Benchmark plan
+      link: /benchmarks/
+      icon: random
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="The question" icon="puzzle">
+    What is the minimum useful local inference node in 2026, measured in capability, watts, and dollars?
+  </Card>
+  <Card title="The floor after the floor" icon="down-caret">
+    LocoBanco maps the consumer VRAM tiers. LocoFósil goes older: Kepler, Maxwell, Pascal, Turing, and the server cards that no longer get modern CUDA.
+  </Card>
+  <Card title="Nvidia first" icon="approve-check">
+    One platform, documented properly. AMD and Intel results are welcome as community contributions once the Nvidia matrix is solid.
+  </Card>
+  <Card title="Measure everything" icon="random">
+    Tokens per second, prompt processing, tokens per joule, cost per million tokens, and whether the task actually succeeds.
+  </Card>
+</CardGrid>
+
+## What this is
+
+LocoFósil is a research project about hardware the modern AI stack has left behind. Not because the cards are interesting on their own, but because the floor is where most people actually are. A K1200 costs less than a new keyboard. An Optiplex costs less than a phone. If that combination can serve a useful 2B model at a usable speed and a sane wattage, that changes who can run local AI.
+
+The project has four tracks: a compatibility matrix, a benchmark suite, a low-power serving node, and a lightweight harness. The first two are measurement. The last two are proof that the measurements mean something.
+
+## Start here
+
+- [Hardware](/hardware/): the cards, the compute capabilities, and what still runs.
+- [Benchmarks](/benchmarks/): what we measure and how.
+- [Low-power node](/node/): the Optiplex plus K1200 reference build.
+- [Lightweight harness](/harness/): testing a 2B model with structure around it.
+
+Dated notes and failed experiments live at [LocoNotas](https://loconotas.org).
