@@ -17,7 +17,7 @@ A custom inference engine for Ternary-Bonsai models, from Kepler to Ampere. It i
 
 ## What is the minimum CUDA baseline?
 
-Kepler runs on CUDA 10.2 and the 470 driver branch. Maxwell and later can use newer stacks. The compatibility matrix records where each runtime stops, card by card.
+Kepler compute capability 3.0 runs on CUDA 10.2 and the 470 driver branch. The K80 is 3.7, which CUDA 11.x can target, but the 470 driver tops out at 11.4. Maxwell and Pascal run on CUDA 12.9 and the 580 driver. CUDA 13.0 dropped Maxwell, Pascal, and Volta. The compatibility matrix records where each runtime stops, card by card.
 
 ## Is this a LocoBanco track?
 
