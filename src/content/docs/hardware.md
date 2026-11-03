@@ -68,6 +68,10 @@ These are starting hypotheses, not results. The compatibility matrix replaces th
 
 `Planned` means the card is on the shelf and the test is queued. `Expected fail` is a hypothesis from the runtime's documented compute-capability floor, not a measurement. `Unknown` means no attempt yet. A result only counts when it links to a measured page.
 
+Kindi's stated floor is compute capability 3.0. Its vendor-tested list is narrower: Quadro K420, Quadro K1200 (one or two cards), Quadro K6000, GeForce GTX 1080, GeForce RTX 3080, and the AMD Radeon 780M. The rest of the matrix is a candidate list until we measure it.
+
+Kindi also runs a specific model family: the Ternary-Bonsai-2 models (2B, 4B, 9B, 27B) and experimental Nemotron 3.5 Bolt E4B. It is not a general GGUF engine.
+
 ## What to record
 
 Every GPU device gets the same record. For the K10 and K80, record each GPU separately:
