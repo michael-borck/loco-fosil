@@ -105,6 +105,17 @@ Cooling is part of the power equation. The K10 and K80 are passive server cards 
 
 The K10 and K80 are proof-of-concept hardware. They are interesting for dual-GPU topology and Kepler support, but a modern GTX or RTX card is the better default for a daily node. Standard cooling, current CUDA, and better tokens per joule matter more than a cheap 24 GB board. Candidates to price secondhand: GTX 1660 Super 6 GB, RTX 3050 8 GB, RTX 3060 12 GB, RTX 3090 24 GB.
 
+### Practical baseline
+
+The lab already has two comparison cards in the main fleet, not on the relic shelf:
+
+| Card | Board power | VRAM | Bandwidth |
+|---|---|---|---|
+| RTX 3060 12 GB | ~170 W | 12 GB | 360 GB/s |
+| RTX 3090 24 GB | ~350 W | 24 GB | 936 GB/s |
+
+The 3060 is on Hidra. The 3090 is on Puente. The current assignment is in the [LocoBanco GPU inventory](https://locobanco.org/gpu-inventory/).
+
 The benchmark measures tokens per joule at the wall. F5 covers the Optiplex plus K1200 node. The other cards get the same measurement once they are on a host.
 
 ## Runtime cliffs
