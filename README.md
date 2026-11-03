@@ -8,6 +8,8 @@ Site: https://locofosil.org
 
 LocoFósil extends the [LocoBanco](https://locobanco.org) floor downward: Kepler, Maxwell, Pascal, Turing, and old server cards, measured for capability, watts, and cost. The first reference build is an Optiplex plus a Quadro K1200 running Kindi and a ternary 2B model.
 
+**Hardware:** GeForce GTX 770, 2x Tesla K10, Tesla K80, Quadro K5200, K6000, K620, 2x K1200, P600, P1000, P2000, P4000
+
 ## Local development
 
 ```bash

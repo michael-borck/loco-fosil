@@ -28,14 +28,17 @@ The floor is not a single number. A card can be fast at short prompts, unusable 
 
 ## Experiments
 
+The shelf has 11 card models. Not every model gets an experiment at once; the matrix records the queue.
+
 | ID | Question | Hardware | Runtime | Model | Status |
 |---|---|---|---|---|---|
-| F1 | How far apart are Kindi and llama.cpp on the same Kepler card? | K420 | Kindi, llama.cpp | Ternary-Bonsai 2B | Planned |
+| F1 | How far apart are Kindi and llama.cpp on the smallest Maxwell card? | K620 2 GB | Kindi, llama.cpp | Ternary-Bonsai 2B | Planned |
 | F2 | Can two K1200 cards serve a 27B model usefully? | 2 x K1200 | Kindi | Ternary-Bonsai 27B | Planned |
-| F3 | Is a K5200 better than an M10 at the same 8 GB tier? | K5200, M10 | TBD | TBD | Planned |
-| F4 | Does a K80 behave as one card or two? | K80 | TBD | TBD | Planned |
+| F3 | Does architecture matter at the same 8 GB tier? | K5200, P4000 | Kindi, llama.cpp | TBD | Planned |
+| F4 | Does a K80 or K10 behave as one card or two? | K80, K10 | TBD | TBD | Planned |
 | F5 | What does the Optiplex plus K1200 node draw at the wall? | Optiplex, K1200 | Kindi | Ternary-Bonsai 2B and 9B | Planned |
 | F6 | Is a 2B model useful as a thinking partner when the harness carries the structure? | Optiplex, K1200 | Kindi plus harness | Ternary-Bonsai 2B | Planned |
+| F7 | How do the Pascal cards compare at 2, 4, 5, and 8 GB? | P600, P1000, P2000, P4000 | Kindi, llama.cpp | Ternary-Bonsai 2B and 9B | Planned |
 
 ## Results
 

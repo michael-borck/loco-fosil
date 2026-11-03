@@ -3,21 +3,27 @@ title: "Hardware"
 description: "The cards, the compute capabilities, and the runtime cliffs."
 ---
 
-LocoFósil starts with the cards already on the bench. The table records what is known and what still needs testing. Treat every status as provisional until a result page links to it.
+LocoFósil starts with the cards on the shelf. The inventory covers Kepler, Maxwell, and Pascal, from 2 GB entry cards to 12 GB server parts. Treat every status as provisional until a result page links to it.
 
 ## Inventory
 
-| Card | Memory | Architecture | Compute capability | Driver branch | Status |
+| Card | Memory | Architecture | Compute capability | Driver branch | Cards |
 |---|---|---|---|---|---|
-| Quadro K420 | 1 GB | Kepler | 3.0 | 470 | Available |
-| Quadro K1200 | 4 GB | Maxwell | 5.0 | Current | 2 cards available |
-| Tesla K40 | 12 GB | Kepler | 3.5 | 470 | Available |
-| Tesla K80 | 2 x 12 GB | Kepler | 3.7 | 470 | Available |
-| Tesla M10 | 8 GB | Maxwell | 5.2 | Current | Available |
-| Quadro K5200 | 8 GB | Kepler | 3.0 | 470 | Incoming |
-| Optiplex host | n/a | n/a | n/a | n/a | Model to confirm |
+| GeForce GTX 770 | 2 or 4 GB | Kepler | 3.0 | 470 | 1 |
+| Tesla K10 | 2 x 4 GB | Kepler | 3.0 | 470 | 2 |
+| Quadro K5200 | 8 GB | Kepler | 3.0 | 470 | 1 |
+| Quadro K6000 | 12 GB | Kepler | 3.0 | 470 | 1 |
+| Tesla K80 | 2 x 12 GB | Kepler | 3.7 | 470 | 1 |
+| Quadro K620 | 2 GB | Maxwell | 5.0 | Current | 1 |
+| Quadro K1200 | 4 GB | Maxwell | 5.0 | Current | 2 |
+| Quadro P600 | 2 GB | Pascal | 6.1 | Current | 1 |
+| Quadro P1000 | 4 GB | Pascal | 6.1 | Current | 1 |
+| Quadro P2000 | 5 GB | Pascal | 6.1 | Current | 1 |
+| Quadro P4000 | 8 GB | Pascal | 6.1 | Current | 1 |
 
-The K80 is a dual-GPU card. Treat each GPU as its own device. The two K1200 cards can run one model in tensor parallel or two models as separate servers.
+The GTX 770 shipped in 2 GB and 4 GB versions. Confirm the card before recording results.
+
+The Tesla K10 and K80 are dual-GPU cards. Treat each GPU as its own device. Two K1200 cards can run one model in tensor parallel or two models as separate servers.
 
 ## Runtime cliffs
 
@@ -25,23 +31,22 @@ The modern AI stack assumes newer compute capabilities. The useful work is findi
 
 | Tier | Cards | CUDA | What usually works | What usually does not |
 |---|---|---|---|---|
-| Kepler | K420, K40, K5200 | 10.2, driver 470 | Kindi, some legacy llama.cpp builds | Modern PyTorch, bitsandbytes, Unsloth |
-| Maxwell | K1200, M10 | 11.x or 12.x | llama.cpp, Ollama, Kindi | Some quantisation kernels |
-| Pascal and later | not yet in the rack | 12.x | Modern llama.cpp, Ollama | Older drivers |
+| Kepler | K10, K80, GTX 770, K5200, K6000 | 10.2, driver 470 | Kindi, some legacy llama.cpp builds | Modern PyTorch, bitsandbytes, Unsloth |
+| Maxwell | K620, K1200 | 11.x or 12.x | llama.cpp, Ollama, Kindi | Some quantisation kernels |
+| Pascal | P600, P1000, P2000, P4000 | 12.x | Modern llama.cpp, Ollama, Kindi | Older drivers and legacy builds |
 
-These are starting hypotheses, not results. The compatibility matrix will replace them.
+These are starting hypotheses, not results. The compatibility matrix replaces them with measured statuses.
 
 ## Compatibility matrix
 
-| Runtime | K420 | K1200 | K40 | K80 | M10 | K5200 |
-|---|---|---|---|---|---|---|
-| Kindi | Planned | Planned | Unknown | Unknown | Unknown | Unknown |
-| llama.cpp legacy | Planned | Planned | Unknown | Unknown | Unknown | Unknown |
-| llama.cpp current | Unknown | Planned | Unknown | Unknown | Unknown | Unknown |
-| Ollama | Unknown | Unknown | Unknown | Unknown | Unknown | Unknown |
-| Msty client | n/a | Planned | n/a | n/a | n/a | n/a |
+| Runtime | Kepler (K10, K80, GTX 770, K5200, K6000) | Maxwell (K620, K1200) | Pascal (P600, P1000, P2000, P4000) |
+|---|---|---|---|
+| Kindi | Planned | Planned | Planned |
+| llama.cpp legacy | Planned | Planned | Planned |
+| llama.cpp current | Expected fail | Planned | Planned |
+| Ollama | Unknown | Planned | Planned |
 
-`Unknown` means no attempt yet. `Planned` means the card is on the bench and the test is queued. A result only counts when it links to a measured page.
+`Planned` means the card is on the shelf and the test is queued. `Expected fail` is a hypothesis from the runtime's documented compute-capability floor, not a measurement. `Unknown` means no attempt yet. A result only counts when it links to a measured page.
 
 ## What to record
 
