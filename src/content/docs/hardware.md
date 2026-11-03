@@ -66,6 +66,14 @@ These are approximate vendor figures. Memory clock is the base clock, not the ef
 
 For prefill, compute and newer instructions matter more. For decode, bandwidth and capacity dominate. The benchmark reports both, because a card that wins one phase does not always win the other.
 
+## Inter-GPU links
+
+The K10 and K80 are dual-GPU cards with no NVLink. Their two GPUs communicate over an on-board PCIe switch. That can avoid a trip through the host chipset, depending on the switch and driver, but it is still PCIe, not a dedicated GPU fabric.
+
+The K1200 pair uses two separate PCIe slots. Peer-to-peer support depends on the motherboard and chipset. Because the K1200's memory bandwidth is low, about 80 GB/s, the PCIe link is a smaller relative bottleneck than it is on a K80, which has about 240 GB/s per GPU. That is why two slow cards can scale acceptably without NVLink.
+
+Measure the link before trusting it: `nvidia-smi topo -m`, `p2pBandwidthLatencyTest`, or `nvbandwidth`.
+
 ## Runtime cliffs
 
 The modern AI stack assumes newer compute capabilities. The useful work is finding the exact point where each runtime stops.
