@@ -5,6 +5,8 @@ description: "The cards, the compute capabilities, and the runtime cliffs."
 
 LocoFósil starts with the cards on the shelf. The inventory covers Kepler, Maxwell, and Pascal, from 2 GB entry cards to 12 GB server parts. Every card here is CUDA-capable. The limit is the newest toolkit and driver that still target the architecture.
 
+The lab-wide canonical registry, including the benchmark fleet, is at [locolabo.org/gpu-registry](https://locolabo.org/gpu-registry/). This page remains the detailed relic-shelf view with compute, CUDA, and driver specifics.
+
 ## Inventory
 
 | Card | Memory | Architecture | Compute capability | Max CUDA | Last driver | Cards | GPU devices |
