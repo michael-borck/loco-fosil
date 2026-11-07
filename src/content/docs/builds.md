@@ -5,6 +5,8 @@ description: "What a $150, $300, or $500 total build can actually run."
 
 The point of LocoFosil is the total cost, not the card alone. A $200 GPU in a $400 host is a $600 node. A $50 GPU in a $100 Optiplex is a $150 node. The second one is often the more interesting result.
 
+For modern consumer cards outside the shelf, including RTX 2000 through 5000, see LocoLabo's [Nvidia GPU reference](https://locolabo.org/nvidia-gpu-reference/). The measured hardware behind these builds is on the [inventory](/hardware/).
+
 These are ballpark secondhand prices in AUD, Perth, late 2026. Check current listings. Shipping, power connectors, and cooling can change the total.
 
 At a hard $100 total, the honest answer is CPU inference or a free host. A GPU node starts around $150 to $200 total.
