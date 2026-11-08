@@ -3,38 +3,21 @@ title: "Hardware"
 description: "The cards, the compute capabilities, and the runtime cliffs."
 ---
 
+import FosilInventory from '../../components/FosilInventory.astro';
+
 LocoFósil starts with the cards on the shelf. The inventory covers Kepler, Maxwell, and Pascal, from 2 GB entry cards to 12 GB server parts. Every card here is CUDA-capable. The limit is the newest toolkit and driver that still target the architecture.
 
 The lab-wide canonical registry, including the benchmark fleet, is at [locolabo.org/gpu-registry](https://locolabo.org/gpu-registry/). This page remains the detailed relic-shelf view with compute, CUDA, and driver specifics.
 
 ## Inventory
 
-| Card | Memory | Architecture | Compute capability | Max CUDA | Last driver | Cards | GPU devices |
-|---|---|---|---|---|---|---|---|
-| GeForce GTX 770 | 2 or 4 GB | Kepler | 3.0 | 10.2 | 470 | 1 | 1 |
-| Tesla K10 | 2 x 4 GB | Kepler | 3.0 | 10.2 | 470 | 2 | 4 |
-| Quadro K5200 | 8 GB | Kepler | 3.0 | 10.2 | 470 | 1 | 1 |
-| Quadro K6000 | 12 GB | Kepler | 3.0 | 10.2 | 470 | 1 | 1 |
-| Quadro K4200 | 4 GB | Kepler | 3.0 | 10.2 | 470 | 1 | 1 |
-| Quadro K420 | 2 GB | Kepler | 3.0 | 10.2 | 470 | 1 | 1 |
-| GeForce GT 710 | 2 GB | Kepler | 3.5 | 11.4 practical | 470 | 1 | 1 |
-| Tesla K80 | 2 x 12 GB | Kepler | 3.7 | 11.4 practical | 470 | 1 | 2 |
-| Quadro K620 | 2 GB | Maxwell | 5.0 | 12.9 | 580 | 2 | 2 |
-| Quadro K1200 | 4 GB | Maxwell | 5.0 | 12.9 | 580 | 2 | 2 |
-| GeForce GTX 960 | 4 GB | Maxwell | 5.2 | 12.9 | 580 | 1 | 1 |
-| Quadro M4000 | 8 GB | Maxwell | 5.2 | 12.9 | 580 | 1 | 1 |
-| Quadro P600 | 2 GB | Pascal | 6.1 | 12.9 | 580 | 1 | 1 |
-| Quadro P1000 | 4 GB | Pascal | 6.1 | 12.9 | 580 | 1 | 1 |
-| Quadro P2000 | 5 GB | Pascal | 6.1 | 12.9 | 580 | 1 | 1 |
-| Quadro P4000 | 8 GB | Pascal | 6.1 | 12.9 | 580 | 1 | 1 |
+<FosilInventory />
 
 The GTX 770 shipped in 2 GB and 4 GB versions. The K420 shipped in 1 GB and 2 GB versions; this one is the 2 GB card. The GT 710 shipped in 1 GB and 2 GB versions; this one is the 2 GB card. The GTX 960 shipped in 2 GB and 4 GB versions; this one is the 4 GB card. Confirm the card before recording results.
 
 The Tesla K10 and K80 are dual-GPU cards: one physical card, two CUDA devices, each with its own memory. A K80 is two 12 GB GPUs, not a single 24 GB pool. A K10 is two 4 GB GPUs. The memory figures above are per GPU. A model must fit on one device unless the runtime splits it across both. `nvidia-smi` lists each GPU separately.
 
 The K1200 is a single-GPU card. Two K1200 cards mean two devices, and they can run one model in tensor parallel or two models as separate servers.
-
-That is 19 cards and 22 GPU devices.
 
 ## What the compute level means
 

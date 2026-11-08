@@ -1,0 +1,40 @@
+---
+import data from '@locolabo/theme/gpus.json';
+
+const rows = data.cards.filter((r) => r.projects.includes('LocoFósil'));
+const memory = (r) =>
+  r.memory_label ?? (r.device_count > 1 ? `${r.device_count} x ${r.vram_gb} GB` : `${r.vram_gb} GB`);
+const cards = rows.reduce((n, r) => n + r.count, 0);
+const devices = rows.reduce((n, r) => n + r.count * (r.device_count ?? 1), 0);
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Card</th>
+      <th>Memory</th>
+      <th>Architecture</th>
+      <th>Compute capability</th>
+      <th>Max CUDA</th>
+      <th>Last driver</th>
+      <th>Cards</th>
+      <th>GPU devices</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((r) => (
+      <tr>
+        <td>{r.card}</td>
+        <td>{memory(r)}</td>
+        <td>{r.architecture}</td>
+        <td>{r.cc.toFixed(1)}</td>
+        <td>{r.max_cuda}</td>
+        <td>{r.last_driver}</td>
+        <td>{r.count}</td>
+        <td>{r.count * (r.device_count ?? 1)}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<p>That is {cards} cards and {devices} GPU devices.</p>
