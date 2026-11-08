@@ -16,7 +16,7 @@ export default defineConfig({
         social: [{ icon: 'external', label: 'LocoNotas', href: 'https://loconotas.org' }],
         logo: {
           alt: 'LocoFósil',
-          src: './src/assets/fosil.svg',
+          src: './src/assets/art/icon.png',
           replacesTitle: false,
         },
         sidebar: [
