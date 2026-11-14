@@ -13,7 +13,7 @@ The lab-wide canonical registry, including the benchmark fleet, is at [locolabo.
 
 <FosilInventory />
 
-The GTX 770 shipped in 2 GB and 4 GB versions. The K420 shipped in 1 GB and 2 GB versions; this one is the 2 GB card. The GT 710 shipped in 1 GB and 2 GB versions; this one is the 2 GB card. The GTX 960 shipped in 2 GB and 4 GB versions; this one is the 4 GB card. Confirm the card before recording results.
+The GTX 770 shipped in 2 GB and 4 GB versions. The K420 shipped in 1 GB and 2 GB versions; this one is the 2 GB card. The GT 710 shipped in 1 GB and 2 GB versions; this one is the 2 GB card. The GTX 960 shipped in 2 GB and 4 GB versions; this one is the 4 GB card. The GT 1030 shipped in GDDR5 and much slower DDR4 versions; this one is the GDDR5 card. Confirm the card before recording results.
 
 The Tesla K10 and K80 are dual-GPU cards: one physical card, two CUDA devices, each with its own memory. A K80 is two 12 GB GPUs, not a single 24 GB pool. A K10 is two 4 GB GPUs. The memory figures above are per GPU. A model must fit on one device unless the runtime splits it across both. `nvidia-smi` lists each GPU separately.
 
@@ -30,7 +30,7 @@ Compute capability is the architecture level the CUDA toolkit compiles for. A ca
 | Kepler | 3.7 | CUDA 11.4 practical | 470 | K80. CUDA 11.8 can target 3.5 and 3.7, but the 470 driver tops out at 11.4. |
 | Maxwell | 5.0 | CUDA 12.9 | 580 | K620, K1200. CUDA 13.0 dropped Maxwell. |
 | Maxwell | 5.2 | CUDA 12.9 | 580 | GTX 960, M4000. CUDA 13.0 dropped Maxwell. |
-| Pascal | 6.1 | CUDA 12.9 | 580 | P600, P1000, P2000, P4000. CUDA 13.0 dropped Pascal. |
+| Pascal | 6.1 | CUDA 12.9 | 580 | GT 1030, P600, P1000, P2000, P4000. CUDA 13.0 dropped Pascal. |
 
 CUDA 13.0 removed offline compilation for everything below compute capability 7.5: Maxwell, Pascal, and Volta. The 580 driver branch is the last one for those architectures and is supported through mid-2028. Applications built with CUDA 12.x continue to run.
 
@@ -56,6 +56,7 @@ These are approximate vendor figures. Memory clock is the base clock, not the ef
 | GeForce GTX 960 | 4 GB | GDDR5 | 128-bit | 1753 MHz | ~112 GB/s |
 | Quadro P1000 | 4 GB | GDDR5 | 128-bit | 1252 MHz | ~82 GB/s |
 | Quadro K1200 | 4 GB | GDDR5 | 128-bit | 1250 MHz | ~80 GB/s |
+| GeForce GT 1030 | 2 GB | GDDR5 | 64-bit | 1502 MHz | ~48 GB/s |
 | Quadro P600 | 2 GB | GDDR5 | 64-bit | 1252 MHz | ~40 GB/s |
 | Quadro K420 | 2 GB | DDR3 | 128-bit | 891 MHz | ~29 GB/s |
 | Quadro K620 | 2 GB | DDR3 | 128-bit | 900 MHz | ~28.8 GB/s |
@@ -80,6 +81,7 @@ These are approximate board power figures. Measure at the wall, including the ho
 | Card | Board power | VRAM | Bandwidth | Likely role |
 |---|---|---|---|---|
 | GeForce GT 710 | ~19 W | 2 GB | ~14.4 GB/s | Lowest-power 2B, very limited by DDR3 |
+| GeForce GT 1030 | ~30 W | 2 GB | ~48 GB/s | Low-power low-profile 2B |
 | Quadro K620 | ~45 W | 2 GB | ~28.8 GB/s | Low-power 2B, limited by DDR3 |
 | Quadro K420 | ~41 W | 2 GB | ~29 GB/s | Low-power 2B, limited by DDR3 |
 | Quadro K1200 | ~45 W | 4 GB | ~80 GB/s | 2B and 9B efficiency candidate |
@@ -132,13 +134,13 @@ The modern AI stack assumes newer compute capabilities. The useful work is findi
 | Kepler 3.5 | GT 710 | 11.4, driver 470 | Kindi, legacy llama.cpp builds | CUDA 12, modern framework wheels |
 | Kepler 3.7 | K80 | 11.4, driver 470 | Kindi, legacy llama.cpp builds | CUDA 12, modern framework wheels |
 | Maxwell | K620, K1200, GTX 960, M4000 | 12.9, driver 580 | llama.cpp, Ollama, Kindi | CUDA 13, some new kernels |
-| Pascal | P600, P1000, P2000, P4000 | 12.9, driver 580 | llama.cpp, Ollama, Kindi | CUDA 13, some new kernels |
+| Pascal | GT 1030, P600, P1000, P2000, P4000 | 12.9, driver 580 | llama.cpp, Ollama, Kindi | CUDA 13, some new kernels |
 
 These are starting hypotheses, not results. The compatibility matrix replaces them with measured statuses.
 
 ## Compatibility matrix
 
-| Runtime | Kepler (K10, K80, GTX 770, GT 710, K420, K4200, K5200, K6000) | Maxwell (K620, K1200, GTX 960, M4000) | Pascal (P600, P1000, P2000, P4000) |
+| Runtime | Kepler (K10, K80, GTX 770, GT 710, K420, K4200, K5200, K6000) | Maxwell (K620, K1200, GTX 960, M4000) | Pascal (GT 1030, P600, P1000, P2000, P4000) |
 |---|---|---|---|
 | Kindi | Planned | Planned | Planned |
 | llama.cpp legacy | Planned | Planned | Planned |
